@@ -86,6 +86,40 @@ namespace AsymetricEncoder
 
 
 
+            foreach(char character in inputMessage)
+            {
+                if (CharacterCollection.allCombined.Contains(character) == false)
+                {
+                    string boxCaption = "Invalid input";
+                    string boxDescription = $"The provided message includes characters which are not allowed:\r\n'{character}'";
+
+                    MessageBoxIcon boxIcon = MessageBoxIcon.Warning;
+                    MessageBoxButtons boxButtons = MessageBoxButtons.OK;
+
+                    MessageBox.Show(boxDescription, boxCaption, boxButtons, boxIcon);
+
+                    return;
+                }
+            }
+
+            foreach (char character in inputKey)
+            {
+                if (CharacterCollection.allCombined.Contains(character) == false)
+                {
+                    string boxCaption = "Invalid input";
+                    string boxDescription = $"The provided key includes characters which are not allowed:\r\n'{character}'";
+
+                    MessageBoxIcon boxIcon = MessageBoxIcon.Warning;
+                    MessageBoxButtons boxButtons = MessageBoxButtons.OK;
+
+                    MessageBox.Show(boxDescription, boxCaption, boxButtons, boxIcon);
+
+                    return;
+                }
+            }
+
+
+
             string handledMessage = EncodeMessage(inputMessage, inputKey);
 
             Text_FinalMessage.Text = handledMessage;
