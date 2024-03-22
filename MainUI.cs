@@ -1,3 +1,6 @@
+using AsymetricEncoder.Resources;
+using System.Text.RegularExpressions;
+
 namespace AsymetricEncoder
 {
     public partial class MainUI : Form
@@ -112,6 +115,67 @@ namespace AsymetricEncoder
             Label_FinalMessage.Text = "Encoded message:";
 
             Button_Handle.Text = "Encode";
+        }
+
+        private void Button_Handle_Click(object sender, EventArgs e)
+        {
+            string input_Message = Text_MessageToHandle.Text;
+            string input_Key = Text_KeyToHandle.Text;
+
+            bool validMessageProvided = !RegexPatterns.AllWhitespaces().Replace(input_Message, string.Empty).Equals(string.Empty);
+            bool validKeyProvided = !RegexPatterns.AllWhitespaces().Replace(input_Key, string.Empty).Equals(string.Empty);
+
+
+
+            if (validMessageProvided == false || validKeyProvided == false)
+            {
+                string info_Caption = "Invalid input";
+                string info_Description = $"Please provide a valid {(validMessageProvided ? "key" : "message")}, for the {(_decodeMessage ? "decoding" : "encoding")} process.";
+
+                MessageBoxIcon info_Icon = MessageBoxIcon.Warning;
+                MessageBoxButtons info_Buttons = MessageBoxButtons.OK;
+
+                MessageBox.Show(info_Description, info_Caption, info_Buttons, info_Icon);
+
+                return;
+            }
+
+
+
+            string handledMessage = EncodeMessage(input_Message, input_Key);
+
+            Text_FinalMessage.Text = handledMessage;
+        }
+
+        private string EncodeMessage(string input_Message, string input_Key)
+        {
+            string handledMessage = string.Empty;
+
+
+
+            int currentIndexAtKey = 0;
+
+            for (int i = 0; i < input_Message.Length; i++)
+            {
+                if (currentIndexAtKey + 1 >= input_Key.Length)
+                {
+                    currentIndexAtKey = 0;
+                }
+
+                char arrayCharVertical = Convert.ToChar(input_Key.Substring(currentIndexAtKey, 1));
+                char arrayCharHorizontal = Convert.ToChar(input_Message.Substring(i, 1));
+
+                int arrayPositionVertical = CharacterCollection.allCombined.IndexOf(arrayCharVertical);
+                int arrayPositionHorizontal = CharacterCollection.allCombined.IndexOf(arrayCharHorizontal);
+
+                handledMessage += _preparedArray[arrayPositionHorizontal, arrayPositionVertical];
+
+                currentIndexAtKey++;
+            }
+
+
+
+            return handledMessage;
         }
     }
 }

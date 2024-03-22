@@ -47,6 +47,7 @@
             Button_Handle.TabIndex = 0;
             Button_Handle.Text = "Encode";
             Button_Handle.UseVisualStyleBackColor = true;
+            Button_Handle.Click += Button_Handle_Click;
             // 
             // Label_KeyToHandle
             // 
