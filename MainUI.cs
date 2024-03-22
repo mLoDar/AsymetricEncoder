@@ -1,8 +1,8 @@
 namespace AsymetricEncoder
 {
-    public partial class Form1 : Form
+    public partial class MainUI : Form
     {
-        public Form1()
+        public MainUI()
         {
             InitializeComponent();
         }
