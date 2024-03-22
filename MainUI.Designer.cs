@@ -142,6 +142,7 @@
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Asymetric Encoder";
+            Load += MainUI_Load;
             ResumeLayout(false);
             PerformLayout();
         }
