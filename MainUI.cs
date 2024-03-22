@@ -12,8 +12,6 @@ namespace AsymetricEncoder
     {
         private static string[,] _preparedArray = new string[,] { };
 
-        private static bool _decodeMessage = false;
-
         private static readonly string _pathFolderAppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         private static readonly string _pathFileTableReference = Path.Combine(_pathFolderAppData, "AsymetricEncoderTableReference.txt");
 
@@ -74,7 +72,7 @@ namespace AsymetricEncoder
             if (validMessageProvided == false || validKeyProvided == false)
             {
                 string boxCaption = "Invalid input";
-                string boxDescription = $"Please provide a valid {(validMessageProvided ? "key" : "message")}, for the {(_decodeMessage ? "decoding" : "encoding")} process.";
+                string boxDescription = $"Please provide a valid {(validMessageProvided ? "key" : "message")}, for the encoding process.";
 
                 MessageBoxIcon boxIcon = MessageBoxIcon.Warning;
                 MessageBoxButtons boxButtons = MessageBoxButtons.OK;
@@ -86,7 +84,7 @@ namespace AsymetricEncoder
 
 
 
-            foreach(char character in inputMessage)
+            foreach (char character in inputMessage)
             {
                 if (CharacterCollection.allCombined.Contains(character) == false)
                 {
@@ -193,28 +191,6 @@ namespace AsymetricEncoder
 
                 return;
             }
-        }
-
-        private void CheckBox_SwitchMode_CheckedChanged(object sender, EventArgs e)
-        {
-            _decodeMessage = !_decodeMessage;
-
-            if (_decodeMessage == true)
-            {
-                Label_KeyToHandle.Text = "Key for decoding:";
-                Label_MessageToHandle.Text = "Message to decode:";
-                Label_FinalMessage.Text = "Decoded message:";
-
-                Button_Handle.Text = "Decode";
-
-                return;
-            }
-
-            Label_KeyToHandle.Text = "Key for encoding:";
-            Label_MessageToHandle.Text = "Message to encode:";
-            Label_FinalMessage.Text = "Encoded message:";
-
-            Button_Handle.Text = "Encode";
         }
 
         private static string[,] PrepareArray(string characters)

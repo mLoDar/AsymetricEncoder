@@ -35,13 +35,12 @@
             Label_MessageToHandle = new Label();
             Text_FinalMessage = new TextBox();
             Label_FinalMessage = new Label();
-            CheckBox_SwitchMode = new CheckBox();
             Button_DisplayTableReference = new Button();
             SuspendLayout();
             // 
             // Button_Handle
             // 
-            Button_Handle.Location = new Point(50, 200);
+            Button_Handle.Location = new Point(50, 214);
             Button_Handle.Name = "Button_Handle";
             Button_Handle.Size = new Size(100, 50);
             Button_Handle.TabIndex = 0;
@@ -103,21 +102,9 @@
             Label_FinalMessage.TabIndex = 5;
             Label_FinalMessage.Text = "Encoded message:";
             // 
-            // CheckBox_SwitchMode
-            // 
-            CheckBox_SwitchMode.AutoSize = true;
-            CheckBox_SwitchMode.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            CheckBox_SwitchMode.Location = new Point(206, 74);
-            CheckBox_SwitchMode.Name = "CheckBox_SwitchMode";
-            CheckBox_SwitchMode.Size = new Size(146, 25);
-            CheckBox_SwitchMode.TabIndex = 7;
-            CheckBox_SwitchMode.Text = "Decode message";
-            CheckBox_SwitchMode.UseVisualStyleBackColor = true;
-            CheckBox_SwitchMode.CheckedChanged += CheckBox_SwitchMode_CheckedChanged;
-            // 
             // Button_DisplayTableReference
             // 
-            Button_DisplayTableReference.Location = new Point(356, 300);
+            Button_DisplayTableReference.Location = new Point(234, 74);
             Button_DisplayTableReference.Name = "Button_DisplayTableReference";
             Button_DisplayTableReference.Size = new Size(116, 50);
             Button_DisplayTableReference.TabIndex = 8;
@@ -129,9 +116,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(514, 411);
+            ClientSize = new Size(404, 411);
             Controls.Add(Button_DisplayTableReference);
-            Controls.Add(CheckBox_SwitchMode);
             Controls.Add(Text_FinalMessage);
             Controls.Add(Label_FinalMessage);
             Controls.Add(Text_MessageToHandle);
@@ -159,7 +145,6 @@
         private Label Label_MessageToHandle;
         private TextBox Text_FinalMessage;
         private Label Label_FinalMessage;
-        private CheckBox CheckBox_SwitchMode;
         private Button Button_DisplayTableReference;
     }
 }
