@@ -2,9 +2,9 @@ namespace AsymetricEncoder
 {
     public partial class MainUI : Form
     {
-        private string[,] preparedArray = new string[,] { };
+        private string[,] _preparedArray = new string[,] { };
 
-        private bool decodeMessage = false;
+        private bool _decodeMessage = false;
 
 
 
@@ -34,9 +34,9 @@ namespace AsymetricEncoder
 
 
 
-            preparedArray = PrepareArray(charactersToUse);
+            _preparedArray = PrepareArray(charactersToUse);
 
-            if (preparedArray.Equals(new string[,] { }))
+            if (_preparedArray.Equals(new string[,] { }))
             {
                 string info_Caption = "Error while preperation";
                 string info_Description = "Failed to prepare the array for en-/decoding.\r\nPlease try again.";
@@ -94,9 +94,9 @@ namespace AsymetricEncoder
 
         private void CheckBox_SwitchMode_CheckedChanged(object sender, EventArgs e)
         {
-            decodeMessage = !decodeMessage;
+            _decodeMessage = !_decodeMessage;
 
-            if (decodeMessage == true)
+            if (_decodeMessage == true)
             {
                 Label_KeyToHandle.Text = "Key for decoding:";
                 Label_MessageToHandle.Text = "Message to decode:";
