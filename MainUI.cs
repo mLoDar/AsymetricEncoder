@@ -251,6 +251,8 @@ namespace AsymetricEncoder
                 MessageBoxIcon info_Icon = MessageBoxIcon.Error;
                 MessageBoxButtons info_Buttons = MessageBoxButtons.OK;
 
+                MessageBox.Show(info_Description, info_Caption, info_Buttons, info_Icon);
+
                 return;
             }
         }
