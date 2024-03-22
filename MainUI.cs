@@ -246,7 +246,7 @@ namespace AsymetricEncoder
                 int arrayPositionVertical = CharacterCollection.allCombined.IndexOf(arrayCharVertical);
                 int arrayPositionHorizontal = CharacterCollection.allCombined.IndexOf(arrayCharHorizontal);
 
-                MessageBox.Show($"pos v: {arrayPositionVertical}\r\npos h: {arrayPositionHorizontal}", $"i.) {i}");
+
 
                 handledMessage += _preparedArray[arrayPositionHorizontal, arrayPositionVertical];
 
