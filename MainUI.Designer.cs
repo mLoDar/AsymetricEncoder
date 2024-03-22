@@ -36,7 +36,7 @@
             Text_FinalMessage = new TextBox();
             Label_FinalMessage = new Label();
             CheckBox_SwitchMode = new CheckBox();
-            button1 = new Button();
+            Button_DisplayTableReference = new Button();
             SuspendLayout();
             // 
             // Button_Handle
@@ -112,22 +112,23 @@
             CheckBox_SwitchMode.TabIndex = 7;
             CheckBox_SwitchMode.Text = "Decode message";
             CheckBox_SwitchMode.UseVisualStyleBackColor = true;
+            CheckBox_SwitchMode.CheckedChanged += CheckBox_SwitchMode_CheckedChanged;
             // 
-            // button1
+            // Button_DisplayTableReference
             // 
-            button1.Location = new Point(356, 300);
-            button1.Name = "button1";
-            button1.Size = new Size(116, 50);
-            button1.TabIndex = 8;
-            button1.Text = "Display table reference";
-            button1.UseVisualStyleBackColor = true;
+            Button_DisplayTableReference.Location = new Point(356, 300);
+            Button_DisplayTableReference.Name = "Button_DisplayTableReference";
+            Button_DisplayTableReference.Size = new Size(116, 50);
+            Button_DisplayTableReference.TabIndex = 8;
+            Button_DisplayTableReference.Text = "Display table reference";
+            Button_DisplayTableReference.UseVisualStyleBackColor = true;
             // 
             // MainUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(514, 411);
-            Controls.Add(button1);
+            Controls.Add(Button_DisplayTableReference);
             Controls.Add(CheckBox_SwitchMode);
             Controls.Add(Text_FinalMessage);
             Controls.Add(Label_FinalMessage);
@@ -157,6 +158,6 @@
         private TextBox Text_FinalMessage;
         private Label Label_FinalMessage;
         private CheckBox CheckBox_SwitchMode;
-        private Button button1;
+        private Button Button_DisplayTableReference;
     }
 }

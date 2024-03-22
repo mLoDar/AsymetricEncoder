@@ -2,7 +2,9 @@ namespace AsymetricEncoder
 {
     public partial class MainUI : Form
     {
-        string[,] preparedArray = new string[,] { };
+        private string[,] preparedArray = new string[,] { };
+
+        private bool decodeMessage = false;
 
 
 
@@ -88,6 +90,28 @@ namespace AsymetricEncoder
 
 
             return preparedArray;
+        }
+
+        private void CheckBox_SwitchMode_CheckedChanged(object sender, EventArgs e)
+        {
+            decodeMessage = !decodeMessage;
+
+            if (decodeMessage == true)
+            {
+                Label_KeyToHandle.Text = "Key for decoding:";
+                Label_MessageToHandle.Text = "Message to decode:";
+                Label_FinalMessage.Text = "Decoded message:";
+
+                Button_Handle.Text = "Decode";
+
+                return;
+            }
+
+            Label_KeyToHandle.Text = "Key for encoding:";
+            Label_MessageToHandle.Text = "Message to encode:";
+            Label_FinalMessage.Text = "Encoded message:";
+
+            Button_Handle.Text = "Encode";
         }
     }
 }
