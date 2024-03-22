@@ -1,14 +1,23 @@
 using AsymetricEncoder.Resources;
-using System.Text.RegularExpressions;
+using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
+using System.Text;
+
+
+
+
 
 namespace AsymetricEncoder
 {
     public partial class MainUI : Form
     {
-        private string[,] _preparedArray = new string[,] { };
+        private static string[,] _preparedArray = new string[,] { };
 
-        private bool _decodeMessage = false;
+        private static bool _decodeMessage = false;
 
+        private static readonly string pathFolderAppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        private static readonly string pathFileTableReference = Path.Combine(pathFolderAppData, "AsymetricEncoderTableReference.txt");
 
 
 
@@ -176,6 +185,74 @@ namespace AsymetricEncoder
 
 
             return handledMessage;
+        }
+
+        private void Button_DisplayTableReference_Click(object sender, EventArgs e)
+        {
+            string tableReference = string.Empty;
+
+            for (int i = 0; i < _preparedArray.GetLength(0); i++)
+            {
+                for (int j = 0; j < _preparedArray.GetLength(1); j++)
+                {
+                    tableReference += _preparedArray[i, j].ToString() + " ";
+                }
+                tableReference += "\r\n";
+            }
+
+
+
+            try
+            {
+                if (File.Exists(pathFileTableReference))
+                {
+                    File.Delete(pathFileTableReference);
+                }
+
+                using var fileStream = new FileStream(pathFileTableReference, FileMode.CreateNew);
+                using var streamWriter = new StreamWriter(fileStream);
+
+                streamWriter.AutoFlush = true;
+
+                streamWriter.Write(tableReference);
+                streamWriter.Close();
+            }
+            catch
+            {
+                string info_Caption = "An unexpected error appeared";
+                string info_Description = "Failed to create a save file to store the table reference.\r\nPlease start the application as an administrator and try again.";
+
+                MessageBoxIcon info_Icon = MessageBoxIcon.Error;
+                MessageBoxButtons info_Buttons = MessageBoxButtons.OK;
+
+                MessageBox.Show(info_Description, info_Caption, info_Buttons, info_Icon);
+
+                return;
+            }
+
+
+
+
+            try
+            {
+                ProcessStartInfo fileToOpen = new(pathFileTableReference)
+                {
+                    UseShellExecute = true,
+                    WorkingDirectory = pathFolderAppData
+                };
+
+                Process.Start(fileToOpen);
+            }
+            catch
+            {
+                string info_Caption = "An unexpected error appeared";
+                string info_Description = "Failed to open the save file for the table reference.\r\nPlease start the application as an administrator and try again.";
+
+                MessageBoxIcon info_Icon = MessageBoxIcon.Error;
+                MessageBoxButtons info_Buttons = MessageBoxButtons.OK;
+
+                return;
+            }
         }
     }
 }

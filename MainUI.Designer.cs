@@ -123,6 +123,7 @@
             Button_DisplayTableReference.TabIndex = 8;
             Button_DisplayTableReference.Text = "Display table reference";
             Button_DisplayTableReference.UseVisualStyleBackColor = true;
+            Button_DisplayTableReference.Click += Button_DisplayTableReference_Click;
             // 
             // MainUI
             // 
